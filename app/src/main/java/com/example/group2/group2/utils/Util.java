@@ -1,6 +1,9 @@
 package com.example.group2.group2.utils;
 
 
+import com.example.group2.group2.model.CompanyModel;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -34,14 +37,17 @@ public class Util {
         return companynamessecondary;
     }
 
-    public static HashMap<String, String> getCompanyList() {
-        HashMap<String, String> companynamessecondary = new HashMap<>();
-        companynamessecondary.put(Constants.HONEY_WELL, "HON");
-        companynamessecondary.put(Constants.HDFC, Constants.HDFC);
-        companynamessecondary.put(Constants.SBI, Constants.SBI);
-        companynamessecondary.put(Constants.CITIBANK, Constants.CITIBANK);
-        companynamessecondary.put(Constants.PROKARMA, Constants.PROKARMA);
-        return companynamessecondary;
+    public static ArrayList<CompanyModel> getCompanyList() {
+        ArrayList<CompanyModel> companyModels = new ArrayList<>();
+        companyModels.add(new CompanyModel("Honeywell", "HON"));
+        companyModels.add(new CompanyModel("Apple", "AAPL"));
+        companyModels.add(new CompanyModel("Facebook", "FB"));
+        companyModels.add(new CompanyModel("MicroSoft", "MSFT"));
+        companyModels.add(new CompanyModel("Apple", "AAPL"));
+        companyModels.add(new CompanyModel("Apple", "AAPL"));
+        return companyModels;
     }
+
+
 
 }

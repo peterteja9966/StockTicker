@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.group2.group2.R;
+import com.example.group2.group2.model.CompanyModel;
 import com.example.group2.group2.model.response.StockQuote;
 import com.example.group2.group2.presenter.HomePresenter;
 
@@ -74,6 +75,10 @@ public class HomeFragment extends Fragment implements IHome, MyStockRecyclerView
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         homePresenter = new HomePresenter(this);
+        loadStockData();
+    }
+
+    public void loadStockData() {
         homePresenter.getStockData();
     }
 
@@ -90,5 +95,9 @@ public class HomeFragment extends Fragment implements IHome, MyStockRecyclerView
     @Override
     public void onItemClick(StockQuote stockQuote) {
 
+    }
+
+    public void loadStockData(CompanyModel companyModel) {
+        homePresenter.getStockData();
     }
 }
