@@ -1,4 +1,4 @@
-package com.example.group2.group2.view.home.dummy;
+package com.example.group2.group2.view.home;
 
 import com.example.group2.group2.model.response.StockQuote;
 

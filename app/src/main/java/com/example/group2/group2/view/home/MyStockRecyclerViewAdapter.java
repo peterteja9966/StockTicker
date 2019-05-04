@@ -8,12 +8,11 @@ import android.widget.TextView;
 
 import com.example.group2.group2.R;
 import com.example.group2.group2.model.response.StockQuote;
-import com.example.group2.group2.view.home.dummy.DummyContent.DummyItem;
 
 import java.util.List;
 
 /**
- * {@link RecyclerView.Adapter} that can display a {@link DummyItem} and makes a call to the
+ * {@link RecyclerView.Adapter} that can display a {@link } and makes a call to the
  * specified {@link }.
  * TODO: Replace the implementation with code for your data type.
  */

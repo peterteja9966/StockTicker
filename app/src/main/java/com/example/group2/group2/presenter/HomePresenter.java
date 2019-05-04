@@ -3,7 +3,7 @@ package com.example.group2.group2.presenter;
 import com.example.group2.group2.api.StockApiManager;
 import com.example.group2.group2.model.request.StockQuoteRequest;
 import com.example.group2.group2.model.response.StockQuoteResponse;
-import com.example.group2.group2.view.home.dummy.IHome;
+import com.example.group2.group2.view.home.IHome;
 
 import retrofit2.Response;
 import rx.Observer;

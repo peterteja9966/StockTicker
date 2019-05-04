@@ -13,7 +13,6 @@ import android.widget.Toast;
 import com.example.group2.group2.R;
 import com.example.group2.group2.model.response.StockQuote;
 import com.example.group2.group2.presenter.HomePresenter;
-import com.example.group2.group2.view.home.dummy.IHome;
 
 import java.util.ArrayList;
 
