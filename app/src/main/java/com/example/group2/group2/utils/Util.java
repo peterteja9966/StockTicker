@@ -43,11 +43,18 @@ public class Util {
         companyModels.add(new CompanyModel("Apple", "AAPL"));
         companyModels.add(new CompanyModel("Facebook", "FB"));
         companyModels.add(new CompanyModel("MicroSoft", "MSFT"));
-        companyModels.add(new CompanyModel("Apple", "AAPL"));
-        companyModels.add(new CompanyModel("Apple", "AAPL"));
         return companyModels;
     }
 
-
+    public static String getCompanyName(String companyValue) {
+        ArrayList<CompanyModel> companyModels = getCompanyList();
+        for (CompanyModel companyModel :
+                companyModels) {
+            if (companyModel.getValue().equalsIgnoreCase(companyValue)) {
+                return companyModel.getName();
+            }
+        }
+        return companyValue;
+    }
 
 }

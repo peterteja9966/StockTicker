@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.example.group2.group2.R;
 import com.example.group2.group2.model.response.StockQuote;
+import com.example.group2.group2.utils.Util;
 
 import java.util.List;
 
@@ -36,7 +37,7 @@ public class MyStockRecyclerViewAdapter extends RecyclerView.Adapter<MyStockRecy
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.stockQuote = mStockQuotes.get(position);
-        holder.tvCompanyName.setText(mStockQuotes.get(position).get1Symbol());
+        holder.tvCompanyName.setText(Util.getCompanyName(mStockQuotes.get(position).get1Symbol()));
         holder.tvCompanyStock.setText(mStockQuotes.get(position).get2Price());
 
         holder.mView.setOnClickListener(new View.OnClickListener() {

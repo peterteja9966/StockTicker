@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -32,8 +33,10 @@ public class HomeFragment extends Fragment implements IHome, MyStockRecyclerView
     private static final String ARG_COLUMN_COUNT = "column-count";
     HomePresenter homePresenter;
     RecyclerView recyclerView;
+    SwipeRefreshLayout pullToRefresh;
     // TODO: Customize parameters
     private int mColumnCount = 1;
+    String symbols = "HON";
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -71,6 +74,15 @@ public class HomeFragment extends Fragment implements IHome, MyStockRecyclerView
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         ArrayList<StockQuote> stockQuotes = new ArrayList<>();
         recyclerView.setAdapter(new MyStockRecyclerViewAdapter(stockQuotes, this));
+
+        pullToRefresh = view.findViewById(R.id.pullToRefresh);
+        pullToRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                homePresenter.getStockData(symbols);
+            }
+        });
+
         return view;
     }
 
@@ -78,26 +90,24 @@ public class HomeFragment extends Fragment implements IHome, MyStockRecyclerView
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         homePresenter = new HomePresenter(this);
-        loadStockData();
-    }
-
-    public void loadStockData() {
-        homePresenter.getStockData();
+        homePresenter.getStockData(symbols);
     }
 
     @Override
     public void loadStockQuotesSuccess(ArrayList<StockQuote> stockQuotes) {
+        pullToRefresh.setRefreshing(false);
         recyclerView.setAdapter(new MyStockRecyclerViewAdapter(stockQuotes, this));
     }
 
     @Override
     public void loadStockQuotesFailed() {
+        pullToRefresh.setRefreshing(false);
         Toast.makeText(getActivity(), "Server failed...", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void loadStockDetailData(StockDetailResponse detailResponse) {
-        
+
     }
 
     @Override
@@ -113,5 +123,10 @@ public class HomeFragment extends Fragment implements IHome, MyStockRecyclerView
     }
 
     public void loadStockData(CompanyModel companyModel) {
+        if (!symbols.contains(companyModel.getValue())) {
+            symbols += "," + companyModel.getValue();
+            pullToRefresh.setRefreshing(true);
+            homePresenter.getStockData(symbols);
+        }
     }
 }

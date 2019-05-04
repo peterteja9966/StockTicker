@@ -7,10 +7,18 @@ public class StockQuoteRequest extends BaseRequest {
 
     @SerializedName("symbols")
     @Expose
-    private String symbols = "MSFT,AAPL,FB,HON";
+    private String symbols = "";
 
     @Override
     String setFunction() {
         return "BATCH_STOCK_QUOTES";
+    }
+
+    public String getSymbols() {
+        return symbols;
+    }
+
+    public void setSymbols(String symbols) {
+        this.symbols = symbols;
     }
 }
