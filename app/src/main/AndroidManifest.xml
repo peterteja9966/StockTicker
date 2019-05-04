@@ -25,6 +25,9 @@
             android:name=".view.home.CompanyListActivity"
             android:label="@string/select_country"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".view.detail.StockDetailActivity"/>
+
     </application>
 
 </manifest>

@@ -1,5 +1,6 @@
 package com.example.group2.group2.view.home;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -12,8 +13,10 @@ import android.widget.Toast;
 
 import com.example.group2.group2.R;
 import com.example.group2.group2.model.CompanyModel;
+import com.example.group2.group2.model.StockDetailResponse;
 import com.example.group2.group2.model.response.StockQuote;
 import com.example.group2.group2.presenter.HomePresenter;
+import com.example.group2.group2.view.detail.StockDetailActivity;
 
 import java.util.ArrayList;
 
@@ -93,11 +96,22 @@ public class HomeFragment extends Fragment implements IHome, MyStockRecyclerView
     }
 
     @Override
-    public void onItemClick(StockQuote stockQuote) {
+    public void loadStockDetailData(StockDetailResponse detailResponse) {
+        
+    }
+
+    @Override
+    public void showProgress(boolean show) {
 
     }
 
+    @Override
+    public void onItemClick(StockQuote stockQuote) {
+        Intent intent = new Intent(getActivity(), StockDetailActivity.class);
+        intent.putExtra("symbol", stockQuote.get1Symbol());
+        getActivity().startActivity(intent);
+    }
+
     public void loadStockData(CompanyModel companyModel) {
-        homePresenter.getStockData();
     }
 }

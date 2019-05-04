@@ -20,21 +20,6 @@ public abstract class NetworkManager {
 
     protected Retrofit retrofit;
 
-    /**
-     * Default constructor that will use the base URL defined by the build config variable.
-     */
-    public NetworkManager() {
-        this(true);
-    }
-
-    public NetworkManager(boolean authenticatorRequired) {
-        this.retrofit = new Retrofit.Builder()
-                .baseUrl("")
-                .client(getHttpClient())
-                .addConverterFactory(GsonConverterFactory.create(getGson()))
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .build();
-    }
 
     /**
      * Custom constructor that will allow a developer to pass in a particular URL if needed.

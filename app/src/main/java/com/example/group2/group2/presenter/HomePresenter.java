@@ -1,6 +1,8 @@
 package com.example.group2.group2.presenter;
 
 import com.example.group2.group2.api.StockApiManager;
+import com.example.group2.group2.model.StockDetailResponse;
+import com.example.group2.group2.model.StockDetails;
 import com.example.group2.group2.model.request.StockQuoteRequest;
 import com.example.group2.group2.model.response.StockQuoteResponse;
 import com.example.group2.group2.view.home.IHome;
@@ -46,4 +48,30 @@ public class HomePresenter {
                     }
                 });
     }
+
+
+    public void getDetailsStockData(String symbol) {
+        stockApiManager.getDetailsStockData("GLOBAL_QUOTE", symbol, "BZ4EFVGM2D4OXBJM")
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<Response<StockDetails>>() {
+                    @Override
+                    public void onCompleted() { }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        iHome.loadStockQuotesFailed();
+                    }
+
+                    @Override
+                    public void onNext(Response<StockDetails> stockDetailResponse) {
+                        if (stockDetailResponse != null && stockDetailResponse.isSuccessful()) {
+                            iHome.loadStockDetailData(stockDetailResponse.body().getGlobalQuote());
+                        } else {
+                           // iHome.loadStockQuotesFailed();
+                        }
+                    }
+                });
+    }
+
 }

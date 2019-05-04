@@ -1,5 +1,7 @@
 package com.example.group2.group2.api;
 
+import com.example.group2.group2.model.StockDetailResponse;
+import com.example.group2.group2.model.StockDetails;
 import com.example.group2.group2.model.request.StockQuoteRequest;
 import com.example.group2.group2.model.response.StockQuoteResponse;
 import com.example.group2.group2.network.NetworkManager;
@@ -9,6 +11,7 @@ import com.google.gson.reflect.TypeToken;
 import java.util.HashMap;
 
 import retrofit2.Response;
+import retrofit2.http.Query;
 import rx.Observable;
 import rx.schedulers.Schedulers;
 
@@ -32,4 +35,13 @@ public class StockApiManager extends NetworkManager {
         return service.getBatchStock(keyValues)
                 .subscribeOn(Schedulers.io());
     }
+
+    public Observable<Response<StockDetails>> getDetailsStockData(String function,
+                                                                  String page,
+                                                                  String apikey) {
+        return service.getStockDetailData(function, page, apikey)
+                .subscribeOn(Schedulers.io());
+    }
+
+
 }
