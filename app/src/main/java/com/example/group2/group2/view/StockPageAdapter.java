@@ -1,17 +1,11 @@
-package com.example.group2.group2.home;
+package com.example.group2.group2.view;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import com.squareup.picasso.Picasso;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class StockPageAdapter extends RecyclerView.Adapter<StockPageAdapter.StockPageViewHolder> {
 
@@ -24,7 +18,7 @@ public class StockPageAdapter extends RecyclerView.Adapter<StockPageAdapter.Stoc
     @NonNull
     @Override
     public StockPageViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-       // View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.list_item_random_user, viewGroup, false);
+        // View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.list_item_random_user, viewGroup, false);
         //return new StockPageViewHolder(view);
         return null;
     }
@@ -33,7 +27,7 @@ public class StockPageAdapter extends RecyclerView.Adapter<StockPageAdapter.Stoc
     public void onBindViewHolder(@NonNull StockPageViewHolder holder, int position) {
         //Result result = resultList.get(position);
         //holder.textView.setText(String.format("%s %s", result.getName().getFirst(),
-                //result.getName().getLast()));
+        //result.getName().getLast()));
     }
 
     @Override

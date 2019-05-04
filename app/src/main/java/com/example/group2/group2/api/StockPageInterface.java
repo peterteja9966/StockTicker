@@ -13,6 +13,6 @@ public interface StockPageInterface {
     @GET("")
     Observable<Response<String>> getStockPageData();
 
-    @GET("")
+    @GET("query")
     Observable<Response<StockQuoteResponse>> getBatchStock(@QueryMap HashMap<String, String> map);
 }

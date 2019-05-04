@@ -6,7 +6,6 @@ import com.google.gson.GsonBuilder;
 
 import java.util.concurrent.TimeUnit;
 
-import okhttp3.Authenticator;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
@@ -31,7 +30,7 @@ public abstract class NetworkManager {
     public NetworkManager(boolean authenticatorRequired) {
         this.retrofit = new Retrofit.Builder()
                 .baseUrl("")
-                .client(getHttpClient(authenticatorRequired))
+                .client(getHttpClient())
                 .addConverterFactory(GsonConverterFactory.create(getGson()))
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .build();
@@ -43,6 +42,9 @@ public abstract class NetworkManager {
     public NetworkManager(String baseUrl) {
         this.retrofit = new Retrofit.Builder()
                 .baseUrl(baseUrl)
+                .addConverterFactory(GsonConverterFactory.create(getGson()))
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .client(getHttpClient())
                 .build();
     }
 
@@ -57,7 +59,7 @@ public abstract class NetworkManager {
                 .create();
     }
 
-    protected OkHttpClient getHttpClient(boolean authenticatorRequired) {
+    protected OkHttpClient getHttpClient() {
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         if (BuildConfig.DEBUG) {
             interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);

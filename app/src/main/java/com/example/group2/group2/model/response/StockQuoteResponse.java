@@ -7,7 +7,7 @@ import android.os.Parcelable;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class StockQuoteResponse implements Parcelable {
 
@@ -31,7 +31,7 @@ public class StockQuoteResponse implements Parcelable {
     private MetaData metaData;
     @SerializedName("Stock Quotes")
     @Expose
-    private List<StockQuote> stockQuotes = null;
+    private ArrayList<StockQuote> stockQuotes = null;
 
     protected StockQuoteResponse(Parcel in) {
         this.metaData = ((MetaData) in.readValue((MetaData.class.getClassLoader())));
@@ -49,11 +49,11 @@ public class StockQuoteResponse implements Parcelable {
         this.metaData = metaData;
     }
 
-    public List<StockQuote> getStockQuotes() {
+    public ArrayList<StockQuote> getStockQuotes() {
         return stockQuotes;
     }
 
-    public void setStockQuotes(List<StockQuote> stockQuotes) {
+    public void setStockQuotes(ArrayList<StockQuote> stockQuotes) {
         this.stockQuotes = stockQuotes;
     }
 
