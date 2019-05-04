@@ -1,23 +1,35 @@
 package com.example.group2.group2.api;
 
+import com.example.group2.group2.model.request.StockQuoteRequest;
+import com.example.group2.group2.model.response.StockQuoteResponse;
 import com.example.group2.group2.network.NetworkManager;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.util.HashMap;
 
 import retrofit2.Response;
-import retrofit2.http.POST;
-import retrofit2.http.Path;
 import rx.Observable;
 import rx.schedulers.Schedulers;
 
 public class StockApiManager extends NetworkManager {
-    public Observable<Response<String>> getLandingPageData(String pageKey, boolean requiresAuthentication) {
 
-        StockPageInterface service = retrofit.create(StockPageInterface.class);
-        return service.getStockPageData()
-                .subscribeOn(Schedulers.io());
+    StockPageInterface service;
+
+    public StockApiManager(String baseUrl) {
+        super(baseUrl);
+        service = retrofit.create(StockPageInterface.class);
     }
 
-    public interface StockPageInterface {
-        @POST("")
-        Observable<Response<String>> getStockPageData();
+    /*
+     * Call get Batch Stock
+     * */
+    public Observable<Response<StockQuoteResponse>> getBatchStock(StockQuoteRequest stockQuoteRequest) {
+        HashMap<String, String> keyValues = new Gson().fromJson(new Gson().toJson(stockQuoteRequest),
+                new TypeToken<HashMap<String, String>>() {
+                }.getType()
+        );
+        return service.getBatchStock(keyValues)
+                .subscribeOn(Schedulers.io());
     }
 }
